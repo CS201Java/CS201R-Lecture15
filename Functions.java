@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
+import java.util.TreeSet;
 
 //Example 3
 import java.util.Collections;
@@ -276,5 +278,82 @@ public class Functions{
         while (queue3.size() > 0) {
             System.out.print(queue3.remove() + " ");
         }
+    }
+
+    public static void example7Sets(){
+        System.out.println("\n\nEXAMPLE 7: USING HASHSETS");
+        Set<String> set1 = new java.util.HashSet<>();
+        
+        // Add strings to set1
+        set1.add("London");
+        set1.add("Paris");
+        set1.add("New York");
+        set1.add("San Francisco");
+        set1.add("Beijing");
+        
+        System.out.print("set1: " + set1);
+        System.out.println(". There are " + set1.size() + " elements in set1");
+        
+        // Delete a string from set1
+        set1.remove("London");
+        System.out.print("set1: " + set1);
+        System.out.println(". There are " + set1.size() + " elements in set1");
+        
+        // Create set2
+        Set<String> set2 = new java.util.HashSet<>();
+        
+        // Add strings to set2
+        set2.add("London");
+        set2.add("Shanghai");
+        set2.add("Paris");
+        System.out.print("\nset2 : " + set2);
+        System.out.println(". There are " + set2.size() + " elements in set2");
+        System.out.println("\nIs Taipei in set2? " + set2.contains("Taipei"));
+        
+        set1.addAll(set2);
+        System.out.println("\nAfter adding set2 to set1, set1 is " + set1);
+        
+        set1.removeAll(set2);
+        System.out.println("After removing set2 from set1, set1 is " + set1);
+        
+        set1.retainAll(set2);
+        System.out.println("After removing common elements in set2 " 
+                           + "from set1, set1 is " + set1);
+
+
+        System.out.println("\n\nEXAMPLE 7: USING TREESETS");
+
+        TreeSet<Student> students = new TreeSet<>(new StudentComparator());
+
+        students.add(new Student(1, "Smith", "Alice", "Biology"));
+        students.add(new Student(2, "Jackson", "Bob", "Mathematics"));
+        students.add(new Student(3, "Smith", "Brian", "Chemistry"));
+        students.add(new Student(4, "Adams", "Carol", "Computer Science"));
+
+        Student s1 = new Student(5, "Adams", "Wednesday", "Engineering");
+        Student s2 = new Student(5, "Jackson", "Percy", "Engineering");
+        students.add(s1);
+        students.add(s2);
+        students.add(s2);   //try to add the same element 2x
+
+        // Use the methods in SortedSet interface
+        System.out.println("first(): " + students.first());
+        System.out.println("last():  " + students.last());
+
+
+        System.out.println("Students sorted by last name, then first name:\n");
+        for (Student s : students) {
+            System.out.println(s);
+        }
+        System.out.println("\nlower(Percy Jackson):      " + students.lower(s2));     //element < Percy
+        System.out.println("higher(Percy Jackson):     " + students.higher(s2));    //element > Percy
+
+        System.out.println("\nheadSet(Wednesday Adams):   " +  students.headSet(s1));
+        System.out.println("headSet(Percy Jackson):     " + students.headSet(s2));   //all elements < Percy
+        System.out.println("tailSet(Percy Jackson):     " + students.tailSet(s2));   //all elements >= Percy
+
+        System.out.println("\npollFirst():                " + students.pollFirst());   //removes first element in the tree
+        System.out.println("pollLast():                 " + students.pollLast());    //removes last element in the tree
+        System.out.println("\nNew tree set:               " + students);
     }
 }

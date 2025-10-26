@@ -26,6 +26,10 @@ public class Main {
         Functions.example5Queue();
 
         //EXAMPLE 6: DEQUE AND LINKED LISTS
+
+
+        //EXAMPLE 7: SETS
+        Functions.example7Sets();
     }
 }
 
