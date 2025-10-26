@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Map;
+import java.util.TreeMap;
 
 //Example 3
 import java.util.Collections;
@@ -355,5 +357,47 @@ public class Functions{
         System.out.println("\npollFirst():                " + students.pollFirst());   //removes first element in the tree
         System.out.println("pollLast():                 " + students.pollLast());    //removes last element in the tree
         System.out.println("\nNew tree set:               " + students);
+    }
+
+    public static void example8Maps(){
+        System.out.println("\n\nEXAMPLE 8: USING MAPS");
+
+        Map<Integer, Student> studentMap = new TreeMap<>();
+        Student s1 = new Student(5, "Adams", "Wednesday", "Engineering");
+        Student s2 = new Student(6, "Jackson", "Percy", "Engineering");
+        Student s3 = new Student(1, "Smith", "Alice", "Biology");
+        Student s4 = new Student(2, "Jackson", "Bob", "Mathematics");
+        Student s5 = new Student(3, "Smith", "Brian", "Chemistry");
+        Student s6 = new Student(4, "Adams", "Carol", "Computer Science");
+
+        studentMap.put(s1.getId(), s1);
+        studentMap.put(s2.getId(), s2);             
+        studentMap.put(s3.getId(), s3);
+        studentMap.put(s4.getId(), s4);  
+        studentMap.put(s5.getId(), s5);
+        studentMap.put(s6.getId(), s6);   
+        studentMap.put(s6.getId(), s6);    //try to add the same element 2x       
+ 
+        // Use the methods in SortedSet interface
+        System.out.println("\nStudents sorted by last name, then first name:");
+        List<Student> sortedList = new ArrayList<>(studentMap.values());
+        Collections.sort(sortedList, new StudentComparator());
+        for (Student s : sortedList) {
+            System.out.println(s);
+        }
+
+        System.out.println("\nGet (5):            " + studentMap.get(5));      
+        System.out.println("Contains Key(9):    " + studentMap.containsKey(9));    
+        System.out.println("Contains Key(3):    " + studentMap.containsKey(3));  
+        System.out.println("Contains Value(s6): " + studentMap.containsValue(s6)); 
+        System.out.println("Remove (4)          " + studentMap.remove(4));
+        System.out.println("All IDs:            " + studentMap.keySet());    
+
+        System.out.println("\nStudents after updates:");
+        sortedList = new ArrayList<>(studentMap.values());
+        Collections.sort(sortedList, new StudentComparator());
+        for (Student s : sortedList) {
+            System.out.println(s);
+        }
     }
 }

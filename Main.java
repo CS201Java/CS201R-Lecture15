@@ -30,6 +30,9 @@ public class Main {
 
         //EXAMPLE 7: SETS
         Functions.example7Sets();
+
+        //EXAMPLE 8: MAPS
+        Functions.example8Maps();
     }
 }
 
