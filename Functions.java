@@ -4,10 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.Map;
-import java.util.TreeMap;
+
 
 //Example 3
 import java.util.Collections;
@@ -23,6 +20,12 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.PriorityQueue;
 import java.util.Comparator;
+
+//Example 7 & 8
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Functions{
     
@@ -64,6 +67,7 @@ public class Functions{
         ArrayList<String> c1 = new ArrayList<String>(collection1);
         System.out.print("Cities in collection1 (c1): ");
         System.out.println(c1);
+
         c1.addAll(collection2);
         System.out.print("Cities in collection1 or collection2: ");
         System.out.println(c1);
@@ -73,10 +77,10 @@ public class Functions{
         System.out.print("Cities in collection1 and collection2: ");
         System.out.println(c1);
 
-        c1 = new ArrayList<String>(collection1);
-        c1.removeAll(collection2);
-        System.out.print("Cities in collection1, but not in 2: ");
-        System.out.println(c1);
+        //YOU TRY IT: USE REMOVEALL TO LIST THE CITIES IN COLLECTION 1, BUT NOT IN COLLECTION2
+ 
+
+
 
         //USING AN ITERATOR
             System.out.print("Print of the collection1 using iterator: ");
@@ -87,49 +91,21 @@ public class Functions{
             System.out.println();
     }
 
-    public static void example2List(){
-        List<Integer> arrayList = new ArrayList<>();
-        arrayList.add(1); // 1 is autoboxed to new Integer(1)
-        arrayList.add(2);
-        arrayList.add(3);
-        arrayList.add(1);
-        arrayList.add(4);
-        arrayList.add(0, 10);
-        arrayList.add(3, 30);
-
-        System.out.println("\n\nEXAMPLE 2: LISTS");
-        System.out.print("A list of integers in the array list:");
-        System.out.println(arrayList);
-
-        LinkedList<Object> linkedList = new LinkedList<>(arrayList);
-        linkedList.add(1, "red");
-        linkedList.removeLast();
-        linkedList.addFirst("green");
-
-        System.out.print("Display the linked list forward:  ");
-        ListIterator<Object> listIterator = linkedList.listIterator();
-        while (listIterator.hasNext()) 
-           System.out.print(listIterator.next() + " ");
-
-
-        System.out.print("\nDisplay the linked list backward:  ");
-        listIterator = linkedList.listIterator(linkedList.size());
-        while (listIterator.hasPrevious())  
-            System.out.print(listIterator.previous() + " ");
-        System.out.println(); 
-    }
-
-    public static void example3Collections(){
-        System.out.println("\n\nEXAMPLE 3: COLLECTIONS");
+    
+    public static void example2Collections(){
+        System.out.println("\n\nEXAMPLE 2: COLLECTIONS");
         System.out.printf("%-50s", "Collections Sort: display sorted list:");
         List<String> list1 = Arrays.asList("red", "green", "blue");
+
+        //this sort uses natural ordering of objects
         Collections.sort(list1);
         System.out.println(list1);
 
         System.out.printf("%-50s","Collections Sort: display reverse ordered list: ");
         List<String> list2 = new ArrayList<> (Arrays.asList("yellow", "red", "green", "blue"));
-        Collections.sort(list2, Collections.reverseOrder());
-        System.out.println(list2);
+        
+        //YOU TRY IT: add sort for reversed order:
+ 
 
         //Combine both lists
         list2.addAll(list1);
@@ -153,7 +129,60 @@ public class Functions{
         System.out.printf("%-50s","Collections Disjoint: display outcome of testing for disjoint:  ");
         System.out.print(Collections.disjoint(list1, list2) + "  ::  ");
         System.out.println(Collections.disjoint(list1, list3));
+
+
+        System.out.println("\n\nEXAMPLE 2: COLLECTIONS - OBJECTS USING SORTS");
+
+        List<Student> list4 = new ArrayList<>();
+
+        list4.add(new Student(3, "Smith", "Alice", "Biology"));
+        list4.add(new Student(2, "Jackson", "Bob", "Mathematics"));
+        list4.add(new Student(1, "Smith", "Brian", "Chemistry"));
+        list4.add(new Student(5, "Adams", "Carol", "Computer Science"));
+
+        Student s1 = new Student(4, "Adams", "Wednesday", "Engineering");
+        Student s2 = new Student(5, "Jackson", "Percy", "Engineering");
+        list4.add(s1);
+        list4.add(s2);
+        System.out.println(list4);
+
+        list4.sort(Comparator.comparing(Student::getLastName));
+        System.out.println(list4);
+
+        //YOU TRY IT:thenComparing statement to also sort by id 
+ 
     } 
+    public static void example3List(){
+        List<Integer> arrayList = new ArrayList<>();
+        arrayList.add(1); // 1 is autoboxed to new Integer(1)
+        arrayList.add(2);
+        arrayList.add(3);
+        arrayList.add(1);
+        arrayList.add(4);
+        arrayList.add(0, 10);
+        arrayList.add(3, 30);
+
+        System.out.println("\n\nEXAMPLE 3: LISTS");
+        System.out.print("A list of integers in the array list:");
+        System.out.println(arrayList);
+
+        LinkedList<Object> linkedList = new LinkedList<>(arrayList);
+        linkedList.add(1, "red");
+        linkedList.removeLast();
+        linkedList.addFirst("green");
+
+        System.out.print("Display the linked list forward:  ");
+        ListIterator<Object> listIterator = linkedList.listIterator();
+        while (listIterator.hasNext()) 
+           System.out.print(listIterator.next() + " ");
+
+        //YOU TRY IT:
+        System.out.print("\nDisplay the linked list backward:  ");
+        listIterator = linkedList.listIterator(linkedList.size());
+        while (listIterator.hasPrevious())  
+            System.out.print(listIterator.previous() + " ");
+        System.out.println(); 
+    }
 
     public static void example4VectorStack(){
 
@@ -197,20 +226,20 @@ public class Functions{
         Stack<Character> stack2 = new Stack<>();
         ArrayList<String> wordList = new ArrayList<>(Arrays.asList("tacocat", "bubba","a", "mom","abba" ));
         boolean isPal;
+        //for each word in the wordList
         for (String w : wordList){
-            //clear stack
-            isPal = true;
+            //clear stack & set isPal to true (assume the word is a palindrome)
             stack2.clear();
+            isPal = true;
+
+            //push all letters onto the stack
             for (int i = 0; i < w.length(); i++)
                 stack2.push(w.charAt(i));
-            for (int i = 0; i < w.length(); i++){
-                char stackChar = stack2.peek();
-                if (stackChar != w.charAt(i)){
-                    isPal = false;
-                    break;
-                }
-                stack2.pop();
-            }
+
+            //for each character in the word
+            //the character should equal the last item pushed onto the stack
+            //YOU TRY IT
+
             System.out.println("The word: " + w + " is a palindrome? " + isPal);
         }
 
@@ -223,14 +252,14 @@ public class Functions{
             stack3.clear();
             for (int i = 0; i < w.length(); i++)
                 stack3.push(w.charAt(i));
-            for (int i = 0; i < w.length(); i++){
-                char stackChar = stack3.peek();
-                if (stackChar != w.charAt(i)){
-                    isPal = false;
-                    break;
-                }
-                stack3.pop();
-            }
+
+            //for each character in the word
+            //the character should equal the last item pushed onto the arrayDeque
+            //YOU TRY IT                
+
+
+
+
             System.out.println("The word: " + w + " is a palindrome? " + isPal);
         }
     } 
@@ -280,7 +309,44 @@ public class Functions{
         while (queue3.size() > 0) {
             System.out.print(queue3.remove() + " ");
         }
+
+        
+        //YOU TRY IT
+        //ADD A COMPARATOR FOR QUEUE4
+        //ADD 2 STATES
+        PriorityQueue<String> queue4 = new PriorityQueue<>();
+        queue4.offer("Oklahoma");
+        queue4.offer("Indiana");
+        queue4.add("Georgia");
+        queue4.add("Texas");
+        System.out.print("\nPriority Queue: Using Custom Comparator:  ");
+        while (queue4.size() > 0) {
+            System.out.print(queue4.remove() + " ");
+        }
     }
+
+    public static void example6ArrayDeque(){
+
+        System.out.println("\n\nEXAMPLE 6: USING ARRAYDEQUE COMMANDS FOR PALINDROME");
+
+        ArrayList<String> wordList = new ArrayList<>(Arrays.asList("tacocat", "bubba","a", "mom","abba" ));
+        boolean isPal;
+
+        Deque<Character> stack3 = new ArrayDeque<>();
+        for (String w : wordList){
+            //clear stack
+            isPal = true;
+            stack3.clear();
+            for (int i = 0; i < w.length(); i++)
+                stack3.push(w.charAt(i));
+
+            //for each character in the word
+            //the character should equal the last item pushed onto the arrayDeque
+            //YOU TRY IT                
+
+            System.out.println("The word: " + w + " is a palindrome? " + isPal);
+        }
+    } 
 
     public static void example7Sets(){
         System.out.println("\n\nEXAMPLE 7: USING HASHSETS");
@@ -334,8 +400,8 @@ public class Functions{
 
         Student s1 = new Student(5, "Adams", "Wednesday", "Engineering");
         Student s2 = new Student(5, "Jackson", "Percy", "Engineering");
-        students.add(s1);
         students.add(s2);
+        students.add(s1);
         students.add(s2);   //try to add the same element 2x
 
         // Use the methods in SortedSet interface
@@ -363,21 +429,24 @@ public class Functions{
         System.out.println("\n\nEXAMPLE 8: USING MAPS");
 
         Map<Integer, Student> studentMap = new TreeMap<>();
-        Student s1 = new Student(5, "Adams", "Wednesday", "Engineering");
-        Student s2 = new Student(6, "Jackson", "Percy", "Engineering");
-        Student s3 = new Student(1, "Smith", "Alice", "Biology");
-        Student s4 = new Student(2, "Jackson", "Bob", "Mathematics");
-        Student s5 = new Student(3, "Smith", "Brian", "Chemistry");
-        Student s6 = new Student(4, "Adams", "Carol", "Computer Science");
+        Student s1 = new Student(1, "Adams", "Wednesday", "Engineering");
+        Student s2 = new Student(2, "Jackson", "Percy", "Engineering");
+        Student s3 = new Student(3, "Smith", "Alice", "Biology");
+        Student s4 = new Student(4, "Jackson", "Bob", "Mathematics");
+        Student s5 = new Student(5, "Smith", "Brian", "Chemistry");
+        Student s6 = new Student(6, "Adams", "Carol", "Computer Science");
 
+        studentMap.put(s4.getId(), s4);  
+        studentMap.put(s3.getId(), s3);
+        //studentMap.put(s5.getId(), s5);        
         studentMap.put(s1.getId(), s1);
         studentMap.put(s2.getId(), s2);             
-        studentMap.put(s3.getId(), s3);
-        studentMap.put(s4.getId(), s4);  
-        studentMap.put(s5.getId(), s5);
-        studentMap.put(s6.getId(), s6);   
-        studentMap.put(s6.getId(), s6);    //try to add the same element 2x       
- 
+        //studentMap.put(s6.getId(), s6);   
+        //studentMap.put(s6.getId(), s6);    //try to add the same element 2x       
+        
+        System.out.println("\nStudent IDs added:  " + studentMap.keySet());     
+        System.out.println("Student Map:        " + studentMap);
+         
         // Use the methods in SortedSet interface
         System.out.println("\nStudents sorted by last name, then first name:");
         List<Student> sortedList = new ArrayList<>(studentMap.values());
@@ -387,9 +456,10 @@ public class Functions{
         }
 
         System.out.println("\nGet (5):            " + studentMap.get(5));      
+        System.out.println("Get (1):            " + studentMap.get(1));      
         System.out.println("Contains Key(9):    " + studentMap.containsKey(9));    
         System.out.println("Contains Key(3):    " + studentMap.containsKey(3));  
-        System.out.println("Contains Value(s6): " + studentMap.containsValue(s6)); 
+        System.out.println("Contains Value(s2): " + studentMap.containsValue(s2)); 
         System.out.println("Remove (4)          " + studentMap.remove(4));
         System.out.println("All IDs:            " + studentMap.keySet());    
 
