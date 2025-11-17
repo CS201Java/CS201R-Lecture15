@@ -36,7 +36,7 @@ public class Functions{
         //Different implementations of collection1:
         ArrayList<String> collection1 = new ArrayList<>();
         //List<String> collection1 = new ArrayList<>();
-        //List<String> collection1 = new LinkedList<>();
+        //List<String>collection1 = new LinkedList<>();
 
         collection1.add("New York");
         collection1.add("Atlanta");
@@ -59,38 +59,36 @@ public class Functions{
         collection2.add("Los Angeles");
         collection2.add("Atlanta");
 
-        System.out.print("A list of cities in collection2: ");
+        System.out.print("\nA list of cities in collection2: ");
         System.out.println(collection2);
 
         //the following creates c1
         //    a new ArrayList that is a copy of collection1
         ArrayList<String> c1 = new ArrayList<String>(collection1);
-        System.out.print("Cities in collection1 (c1): ");
+        System.out.print("Cities in c1 (based on collection1): ");
         System.out.println(c1);
 
         c1.addAll(collection2);
-        System.out.print("Cities in collection1 or collection2: ");
+        System.out.print("Cities in c1 (collection1 union collection2): ");
         System.out.println(c1);
 
         c1 = new ArrayList<String>(collection1);
         c1.retainAll(collection2);
-        System.out.print("Cities in collection1 and collection2: ");
+        System.out.print("Cities in c1 (collection1 intersection collection2): ");
         System.out.println(c1);
 
         //YOU TRY IT: USE REMOVEALL TO LIST THE CITIES IN COLLECTION 1, BUT NOT IN COLLECTION2
  
 
-
-
         //USING AN ITERATOR
-            System.out.print("Print of the collection1 using iterator: ");
-            Iterator<String> iterator = collection1.iterator();
-            while (iterator.hasNext()){
-                System.out.print(iterator.next().toUpperCase() + " ");
-            }
-            System.out.println();
+        System.out.print("Print of the collection1 using iterator: ");
+        Iterator<String> iterator = collection1.iterator();
+        while (iterator.hasNext()){
+            System.out.print(iterator.next().toUpperCase() + " ");
+        }
+        System.out.println();
+ 
     }
-
     
     public static void example2Collections(){
         System.out.println("\n\nEXAMPLE 2: COLLECTIONS");
@@ -103,9 +101,10 @@ public class Functions{
 
         System.out.printf("%-50s","Collections Sort: display reverse ordered list: ");
         List<String> list2 = new ArrayList<> (Arrays.asList("yellow", "red", "green", "blue"));
-        
+           
         //YOU TRY IT: add sort for reversed order:
  
+
 
         //Combine both lists
         list2.addAll(list1);
@@ -130,7 +129,6 @@ public class Functions{
         System.out.print(Collections.disjoint(list1, list2) + "  ::  ");
         System.out.println(Collections.disjoint(list1, list3));
 
-
         System.out.println("\n\nEXAMPLE 2: COLLECTIONS - OBJECTS USING SORTS");
 
         List<Student> list4 = new ArrayList<>();
@@ -150,6 +148,7 @@ public class Functions{
         System.out.println(list4);
 
         //YOU TRY IT:thenComparing statement to also sort by id 
+ 
  
     } 
     public static void example3List(){

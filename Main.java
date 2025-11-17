@@ -13,10 +13,10 @@ public class Main {
         Functions.example1Collection();
 
         //EXAMPLE 2: COLLECTIONS
-        //Functions.example2Collections();
+        Functions.example2Collections();
 
         //EXAMPLE 3: LISTS
-        //Functions.example3List();
+        Functions.example3List();
 
         //EXAMPLE 4: VECTOR, STACK, ARRAYDEQUE
         //Functions.example4VectorStack();
