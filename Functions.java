@@ -176,11 +176,10 @@ public class Functions{
            System.out.print(listIterator.next() + " ");
 
         //YOU TRY IT:
+        //NOTE: a standard iterator cannot print in reverse
         System.out.print("\nDisplay the linked list backward:  ");
-        listIterator = linkedList.listIterator(linkedList.size());
-        while (listIterator.hasPrevious())  
-            System.out.print(listIterator.previous() + " ");
-        System.out.println(); 
+
+        
     }
 
     public static void example4VectorStack(){
