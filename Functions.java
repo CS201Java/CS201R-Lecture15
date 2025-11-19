@@ -79,8 +79,8 @@ public class Functions{
 
         //YOU TRY IT: USE REMOVEALL TO LIST THE CITIES IN COLLECTION 1, BUT NOT IN COLLECTION2
         c1 = new ArrayList<String>(collection1);
-        c1.removeAll(collection2);
-        System.out.print("c1-collection2: " );
+
+        
         System.out.println(c1);
 
         //USING AN ITERATOR
@@ -106,8 +106,9 @@ public class Functions{
         List<String> list2 = new ArrayList<> (Arrays.asList("yellow", "red", "green", "blue"));
            
         //YOU TRY IT: add sort for reversed order:
-        Collections.sort(list2, Collections.reverseOrder());
-        list2.sort(Collections.reverseOrder());
+
+
+
         System.out.println(list2);
 
         //Combine both lists
@@ -186,10 +187,9 @@ public class Functions{
         //YOU TRY IT:
         //NOTE: a standard iterator cannot print in reverse
         System.out.print("\nDisplay the linked list backward:  ");
-        listIterator = linkedList.listIterator(linkedList.size());
-        while (listIterator.hasPrevious()){
-            System.out.print(listIterator.previous() + " ");
-        }
+
+
+
         System.out.println();
     }
 
@@ -248,14 +248,10 @@ public class Functions{
             //for each character in the word
             //the character should equal the last item pushed onto the stack
             //YOU TRY IT
-            for (int i = 0; i < w.length(); i++){
-                char stackChar = stack2.peek();
-                if (stackChar != w.charAt(i)){
-                    isPal = false;
-                    break;
-                }
-                stack2.pop();
-            }
+
+
+
+
             System.out.println("The word: " + w + " is a palindrome? " + isPal);
         }
     } 
