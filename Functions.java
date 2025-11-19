@@ -78,7 +78,10 @@ public class Functions{
         System.out.println(c1);
 
         //YOU TRY IT: USE REMOVEALL TO LIST THE CITIES IN COLLECTION 1, BUT NOT IN COLLECTION2
- 
+        c1 = new ArrayList<String>(collection1);
+        c1.removeAll(collection2);
+        System.out.print("c1-collection2: " );
+        System.out.println(c1);
 
         //USING AN ITERATOR
         System.out.print("Print of the collection1 using iterator: ");
@@ -103,18 +106,19 @@ public class Functions{
         List<String> list2 = new ArrayList<> (Arrays.asList("yellow", "red", "green", "blue"));
            
         //YOU TRY IT: add sort for reversed order:
- 
-
+        Collections.sort(list2, Collections.reverseOrder());
+        list2.sort(Collections.reverseOrder());
+        System.out.println(list2);
 
         //Combine both lists
         list2.addAll(list1);
         System.out.printf("%-50s","Combination of list 1 and list 2:  ");
         System.out.println(list2);
 
-        System.out.printf("%-50s","Collections binarySearch: find green & Green:  ");
-        System.out.print("(1) Index: " + Collections.binarySearch(list2, "green") +  "  ::  ");
+        System.out.printf("%-50s","Collections binarySearch:, find green & Green:  ");
+        System.out.print("(1) Index: " + Collections.binarySearch(list2,"green") +  "  ::  ");
         System.out.println("(2) Index: " + Collections.binarySearch(list2, "Green"));
-
+ 
         
         System.out.printf("%-50s","Collections Shuffle: display shuffled list: ");
         Collections.shuffle(list2);
@@ -147,9 +151,13 @@ public class Functions{
         list4.sort(Comparator.comparing(Student::getLastName));
         System.out.println(list4);
 
+        //YOU TRY IT:print list2 in reverse order
+        Collections.sort(list2, Collections.reverseOrder());  
+        System.out.println(list4);
+
         //YOU TRY IT:thenComparing statement to also sort by id 
- 
- 
+
+
     } 
     public static void example3List(){
         List<Integer> arrayList = new ArrayList<>();
@@ -178,8 +186,11 @@ public class Functions{
         //YOU TRY IT:
         //NOTE: a standard iterator cannot print in reverse
         System.out.print("\nDisplay the linked list backward:  ");
-
-        
+        listIterator = linkedList.listIterator(linkedList.size());
+        while (listIterator.hasPrevious()){
+            System.out.print(listIterator.previous() + " ");
+        }
+        System.out.println();
     }
 
     public static void example4VectorStack(){
@@ -214,7 +225,7 @@ public class Functions{
         // Check if empty
         System.out.println("Stack: Removing All Elements: ");
         while (!(stack.isEmpty())) {
-        top = stack.lastElement();
+            top = stack.lastElement();
             System.out.print(top + " ");
             stack.remove(stack.size() -1);
         }
@@ -237,27 +248,14 @@ public class Functions{
             //for each character in the word
             //the character should equal the last item pushed onto the stack
             //YOU TRY IT
-
-            System.out.println("The word: " + w + " is a palindrome? " + isPal);
-        }
-
-        
-        System.out.println("\n\nEXAMPLE 4: USING ARRAYDEQUE COMMANDS FOR PALINDROME");
-        Deque<Character> stack3 = new ArrayDeque<>();
-        for (String w : wordList){
-            //clear stack
-            isPal = true;
-            stack3.clear();
-            for (int i = 0; i < w.length(); i++)
-                stack3.push(w.charAt(i));
-
-            //for each character in the word
-            //the character should equal the last item pushed onto the arrayDeque
-            //YOU TRY IT                
-
-
-
-
+            for (int i = 0; i < w.length(); i++){
+                char stackChar = stack2.peek();
+                if (stackChar != w.charAt(i)){
+                    isPal = false;
+                    break;
+                }
+                stack2.pop();
+            }
             System.out.println("The word: " + w + " is a palindrome? " + isPal);
         }
     } 
@@ -339,10 +337,60 @@ public class Functions{
                 stack3.push(w.charAt(i));
 
             //for each character in the word
-            //the character should equal the last item pushed onto the arrayDeque
-            //YOU TRY IT                
+            //the character should equal the last item pushed onto the arrayDeque              
+            for (int i = 0; i < w.length(); i++){
+                char stackChar = stack3.peek();
+               if (stackChar != w.charAt(i)){
+                   isPal = false;
+                  break;
+                }
+                stack3.pop();
+            }
 
             System.out.println("The word: " + w + " is a palindrome? " + isPal);
+        }
+
+        //setup the character types and the expressions to evaluate
+        Set<Character> operands = new java.util.TreeSet<>(Set.of('1','2','3','4','5','6','7','8','9','0'));
+        Set<Character> operators = new java.util.TreeSet<>(Set.of('+','-','/','*'));
+        ArrayList<String> expList = new ArrayList<>(Arrays.asList("7 8 * 4 + 6 -", "3 4 5 * 6 + -", "7 2 * 5 - 9 +"));
+
+        //set up the 'stack' using an ArrayDeque
+        Deque<Integer> stack4 = new ArrayDeque<>();
+        for (String e : expList){
+            //clear stack
+            stack4.clear();
+
+
+            for (int i = 0; i < e.length(); i++){
+                if (e.charAt(i) == ' ')                     //if input character is a space - ignore this
+                    continue;
+                if (operands.contains(e.charAt(i))){        //if input character is an operand - push this onto the stack
+                    int temp = Integer.parseInt(e.substring(i,i+1));
+                    stack4.push(temp);
+                }
+                //else if input character is an operator & the stack has 2 or more elements
+                // pop the right & left values
+                // perform the operation & push the result onto the stack
+                //YOU TRY IT
+                else if (operators.contains(e.charAt(i))){
+                    if (stack4.size() >= 2){
+
+
+
+
+
+                    }
+                    else{
+                        System.out.println("not enough operands for operator");
+                    }
+                }
+                else
+                    System.out.println("invalid char in list");
+            }
+            
+            int temp = stack4.pop();
+            System.out.println("The expression: " + e + " = " + temp);
         }
     } 
 
